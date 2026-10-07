@@ -32,7 +32,7 @@ npm run build           # must succeed from clean checkout
 npm run validate:html   # html-validate out/**/*.html → 0 errors
 npm run check:links     # linkinator out/ → 0 broken links (internal + platform home URLs)
 npm run test:e2e        # Playwright journeys, keyboard, no-JS, viewports, axe
-npm run lhci            # Lighthouse CI: perf ≥ 90, a11y ≥ 90, script ≤ 200 KB per audited page
+npm run lhci            # Lighthouse CI: slow-4G perf ≥ 90, a11y ≥ 90, script ≤ 200 KB; typical-4G TTI ≤ 2 s
 ```
 
 ## Validation scenarios
@@ -50,7 +50,7 @@ npm run lhci            # Lighthouse CI: perf ≥ 90, a11y ≥ 90, script ≤ 20
 | 9 | Responsive | Set viewport 320, 768, 1280, 1920 px on every page | No horizontal scrollbar; episodes single-column at 320 | FR-008, SC-004 |
 | 10 | Keyboard only | Tab through each page | Every link/button/toggle/player control reachable with visible focus | FR-010, SC-005 |
 | 11 | 404 | Open `/does-not-exist/` on the preview server | Branded not-found page with link to `/` | FR-011 |
-| 12 | Budget | Inspect `lhci` report | Performance ≥ 90, Accessibility ≥ 90, script size ≤ 200 KB per page | SC-003, Principle III |
+| 12 | Budget | Inspect `lhci` reports in `src/test-results/lighthouse*/` | Slow-4G: Performance ≥ 90, Accessibility ≥ 90, script ≤ 200 KB; typical-4G: TTI ≤ 2 s per page | SC-003, Principle III |
 
 ## Troubleshooting
 

@@ -23,7 +23,12 @@ export function NavLinks({ className, linkClassName }: { className?: string; lin
         const active = isActive(pathname, l.href);
         return (
           <li key={l.href}>
-            <Link href={l.href} className={linkClassName} aria-current={active ? "page" : undefined}>
+            <Link
+              href={l.href}
+              prefetch={false}
+              className={linkClassName}
+              aria-current={active ? "page" : undefined}
+            >
               {l.label}
             </Link>
           </li>

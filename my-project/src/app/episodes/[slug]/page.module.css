@@ -19,6 +19,8 @@
 .art img {
   width: 100%;
   max-width: 26rem;
+  aspect-ratio: 1;
+  background: var(--surface);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
 }

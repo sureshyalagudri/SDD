@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { preload } from "react-dom";
 import { AudioPlayer } from "@/components/AudioPlayer";
 import { ListenOn } from "@/components/ListenOn";
 import { episodes } from "@/content/episodes";
@@ -26,13 +27,14 @@ export default async function EpisodePage({ params }: { params: Promise<Params> 
   const { slug } = await params;
   const episode = getEpisodeBySlug(slug);
   if (!episode) notFound();
+  preload(episode.artworkSrc, { as: "image", fetchPriority: "high" });
 
   const paragraphs = episode.fullDescription.split(/\n\s*\n/).map((p) => p.trim());
 
   return (
     <article className={styles.article}>
       <p>
-        <Link href="/episodes/" className={styles.back}>
+        <Link href="/episodes/" prefetch={false} className={styles.back}>
           <span aria-hidden="true">←</span> All episodes
         </Link>
       </p>

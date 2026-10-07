@@ -30,7 +30,7 @@ npm test               # Vitest: content invariants, lib helpers, components
 npm run validate:html  # html-validate over out/**/*.html
 npm run check:links    # crawl out/ for broken internal/external links
 npm run test:e2e       # Playwright: chromium, 320px mobile, and JavaScript-disabled projects
-npm run lhci           # Lighthouse CI: perf ≥ 90, a11y ≥ 90, script ≤ 200 KB per page
+npm run lhci           # Lighthouse CI: slow-4G perf ≥ 90 / a11y ≥ 90 / script ≤ 200 KB, then typical-4G TTI ≤ 2 s
 ```
 
 First e2e run: `npx playwright install chromium`.

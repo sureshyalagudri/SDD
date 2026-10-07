@@ -8,7 +8,7 @@ export function SiteHeader() {
   return (
     <header className={styles.header}>
       <div className={`container ${styles.inner}`}>
-        <Link href="/" className={styles.brand}>
+        <Link href="/" prefetch={false} className={styles.brand}>
           <span className={styles.mark} aria-hidden="true" />
           <span>{podcast.name}</span>
         </Link>

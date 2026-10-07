@@ -33,8 +33,10 @@ Firefox, Safari (desktop + mobile)
 
 **Project Type**: static web application (single Next.js project at repo root)
 
-**Performance Goals**: ≤ 200 KB compressed JS per page; Lighthouse mobile Performance ≥ 90 and
-Accessibility ≥ 90 on every page; interactive in < 2 s on simulated mobile
+**Performance Goals**: ≤ 200 KB compressed JS per page; Lighthouse mobile (slow-4G profile)
+Performance ≥ 90 and Accessibility ≥ 90 on every page; Time to Interactive < 2 s on a typical
+4G mobile profile (Lighthouse simulated 70 ms RTT / 9 Mbps / 4× CPU) — SC-003's "typical mobile
+connection"
 
 **Constraints**: static files only (`out/`); core content and navigation render with JS disabled;
 WCAG 2.1 AA contrast in both themes; no build-time network fetches (fonts/assets committed);
@@ -156,9 +158,11 @@ Re-evaluated after Phase 1 (research.md, data-model.md, contracts/, quickstart.m
 
 - Static-First: unchanged — no server features introduced by design; `generateStaticParams`
   covers all 20 slugs.
-- Performance: client JS limited to `ThemeToggle` (~1 KB) and `AudioPlayer` (~3 KB) on top of
-  framework baseline; audio `preload="none"`, SVG artwork → budget holds. Final verification is a
-  CI gate, not an assumption.
+- Performance: client JS limited to `ThemeToggle`, `AudioPlayer`, and the small `NavLinks`
+  (`usePathname` for `aria-current`) on top of the framework baseline; audio `preload="none"`,
+  SVG artwork, global CSS inlined, above-fold artwork preloaded, `Link` prefetch disabled →
+  budget holds (113 kB max first-load JS). Measured: slow-4G TTI 2.06–2.17 s (perf 97–99);
+  typical-4G TTI ≈ 0.8 s, satisfying SC-003. Both profiles are CI gates (`npm run lhci`).
 - Simplicity: CSS Modules + custom properties chosen over Tailwind/styled-components (see
   research.md); no additional runtime dependencies beyond Next/React.
 - Content integrity: content invariants (20 episodes, 1 featured, unique slugs, assets exist)

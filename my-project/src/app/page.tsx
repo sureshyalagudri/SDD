@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { preload } from "react-dom";
 import { EpisodeHero } from "@/components/EpisodeHero";
 import { ListenOn } from "@/components/ListenOn";
 import { podcast } from "@/content/podcast";
@@ -9,6 +10,7 @@ export const metadata: Metadata = { title: "Home" };
 
 export default function HomePage() {
   const featured = getFeaturedEpisode();
+  preload(featured.artworkSrc, { as: "image", fetchPriority: "high" });
   return (
     <div className={styles.page}>
       <EpisodeHero episode={featured} />

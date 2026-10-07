@@ -12,7 +12,7 @@ export default function NotFound() {
         The link you followed may be out of date, or the address may have been typed incorrectly.
       </p>
       <p>
-        <Link href="/" className="btn">
+        <Link href="/" prefetch={false} className="btn">
           Back to the landing page
         </Link>
       </p>

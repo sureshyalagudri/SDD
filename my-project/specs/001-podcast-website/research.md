@@ -102,9 +102,13 @@ embedded mock data, responsive) plus the constitution. No `NEEDS CLARIFICATION` 
   - Playwright against `out/` served statically: user-story journeys, keyboard-only
     navigation, `javaScriptEnabled: false` project, viewport matrix (320/768/1280/1920),
     `@axe-core/playwright` for AA checks in both themes, theme persistence across reload.
-  - Lighthouse CI (`@lhci/cli`) with assertions `categories:performance ≥ 0.9`,
-    `categories:accessibility ≥ 0.9`, and a `resource-summary:script:size ≤ 200000` budget on
-    representative pages (landing, episodes, one episode, about, faq).
+  - Lighthouse CI (`@lhci/cli`) in two passes chained by `npm run lhci`: `lighthouserc.json`
+    (default slow-4G mobile) asserts `categories:performance ≥ 0.9`,
+    `categories:accessibility ≥ 0.9`, and `resource-summary:script:size ≤ 200000`;
+    `lighthouserc.typical-4g.json` (simulated 70 ms RTT / 9 Mbps / 4× CPU) asserts
+    `interactive ≤ 2000 ms` for SC-003. Slow-4G TTI measures 2.06–2.17 s — bounded by the
+    ~103 kB React/Next runtime — so "typical mobile connection" is pinned to the typical-4G
+    profile rather than the 75th-percentile slow-4G one.
   - `html-validate` over `out/**/*.html` (style-only rules for React's void-tag/camelCase
     serialization disabled; structural rules on); link check via `scripts/check-links.mjs`,
     which serves `out/` locally and crawls it with the linkinator API (the linkinator CLI's

@@ -26,6 +26,8 @@
 
 .photo {
   width: min(100%, 16rem);
+  aspect-ratio: 1;
+  background: var(--bg-elev);
   border-radius: 999px;
   box-shadow: var(--shadow);
 }

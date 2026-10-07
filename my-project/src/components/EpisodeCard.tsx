@@ -21,7 +21,7 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
         <div className={styles.body}>
           <p className="eyebrow">Ep. {episode.number}</p>
           <h3 id={titleId} className={styles.title}>
-            <Link href={episodeHref(episode)} className={styles.titleLink}>
+            <Link href={episodeHref(episode)} prefetch={false} className={styles.titleLink}>
               {episode.title}
             </Link>
           </h3>

@@ -22,7 +22,7 @@ export function EpisodeHero({ episode }: { episode: Episode }) {
           </dd>
         </dl>
         <p>
-          <Link href={episodeHref(episode)} className="btn">
+          <Link href={episodeHref(episode)} prefetch={false} className="btn">
             <span aria-hidden="true">▶</span> Listen now
           </Link>
         </p>

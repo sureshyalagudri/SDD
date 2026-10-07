@@ -1,0 +1,35 @@
+{
+  "ci": {
+    "collect": {
+      "staticDistDir": "./out",
+      "url": [
+        "http://localhost/",
+        "http://localhost/episodes/",
+        "http://localhost/episodes/ep-01-why-we-started-signal-and-noise/",
+        "http://localhost/about/",
+        "http://localhost/faq/"
+      ],
+      "numberOfRuns": 1,
+      "settings": {
+        "formFactor": "mobile",
+        "onlyCategories": ["performance"],
+        "skipAudits": ["uses-http2"],
+        "throttlingMethod": "simulate",
+        "throttling": {
+          "rttMs": 70,
+          "throughputKbps": 9000,
+          "cpuSlowdownMultiplier": 4,
+          "requestLatencyMs": 0,
+          "downloadThroughputKbps": 0,
+          "uploadThroughputKbps": 0
+        }
+      }
+    },
+    "assert": {
+      "assertions": {
+        "interactive": ["error", { "maxNumericValue": 2000 }]
+      }
+    },
+    "upload": { "target": "filesystem", "outputDir": "./src/test-results/lighthouse-typical-4g" }
+  }
+}

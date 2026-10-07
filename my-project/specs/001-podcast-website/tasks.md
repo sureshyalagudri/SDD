@@ -264,3 +264,16 @@ Then:      T040 (episodes e2e)
 - Never introduce runtime data fetching, API routes, or `next/image` with the default loader —
   all three break `output: 'export'` or Principle I.
 - Commit generated assets (audio, artwork, fonts); never fetch them at build time.
+
+---
+
+## Phase 8: Convergence
+
+**Purpose**: Close gaps found by `/speckit-converge` on 2026-10-07 between the implementation and
+the spec, plan, contracts, and constitution. Source paths reflect the current `src/` layout.
+
+- [ ] T061 CRITICAL: Add `loading="lazy"` to the three platform badge `<img>` elements in `src/components/ListenOn.tsx` so below-the-fold images on `/` and every episode page are lazy-loaded per Constitution III and contracts/routes.md (partial)
+- [ ] T062 Add a Lighthouse assertion `"interactive": ["error", { "maxNumericValue": 2000 }]` to `lighthouserc.json` and reduce simulated-mobile Time to Interactive below 2 s on all five audited pages (currently 2.06–2.24 s) — e.g. drop the `usePathname` client boundary in `src/components/NavLinks.tsx` by passing the current path from each page/layout, add `<link rel="preload" as="image">` for the hero/detail artwork, and confirm no other client components were introduced — per SC-003 and plan Performance Goals (partial)
+- [ ] T063 Add a visible placeholder background (e.g. `background: var(--surface)` with matching `border-radius`/`aspect-ratio: 1`) to artwork and host images in `src/components/EpisodeHero.module.css`, `src/components/EpisodeCard.module.css`, `src/app/episodes/[slug]/page.module.css`, and `src/app/about/page.module.css` so a failed image load shows a placeholder while layout stays intact per spec Edge Case "Episode artwork fails to load" (partial)
+- [ ] T064 Change the two-column breakpoint in `src/app/episodes/page.module.css` from `@media (min-width: 480px)` to `@media (min-width: 481px)` so the catalog is single-column at ≤ 480 px per contracts/routes.md `/episodes/` row (partial)
+- [ ] T065 Remove the unused `@testing-library/user-event` devDependency from `package.json` (`npm uninstall -D @testing-library/user-event`) per plan Technical Context testing stack (unrequested)

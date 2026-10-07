@@ -12,7 +12,15 @@ export function ListenOn({ headingId = "listen-on" }: { headingId?: string }) {
           <li key={p.id}>
             <a href={p.homeUrl} target="_blank" rel="noopener" className={styles.badge}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={p.badgeSrc} alt="" width={48} height={48} className={styles.icon} />
+              <img
+                src={p.badgeSrc}
+                alt=""
+                width={48}
+                height={48}
+                loading="lazy"
+                decoding="async"
+                className={styles.icon}
+              />
               <span>
                 Listen on {p.name}
                 <span className="visually-hidden"> (opens in new tab)</span>
