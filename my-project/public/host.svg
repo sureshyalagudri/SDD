@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-labelledby="t">
+<title id="t">Illustrated portrait of the host</title>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#4f46e5"/><stop offset="1" stop-color="#d9480f"/></linearGradient>
+<clipPath id="c"><circle cx="200" cy="200" r="200"/></clipPath>
+</defs>
+<g clip-path="url(#c)">
+<rect width="400" height="400" fill="url(#bg)"/>
+<circle cx="200" cy="420" r="160" fill="#f6e3cf"/>
+<circle cx="200" cy="170" r="92" fill="#f6e3cf"/>
+<path d="M108 170a92 92 0 0 1 184 0v10c-20-40-50-62-92-62s-72 22-92 62Z" fill="#2b2140"/>
+<path d="M118 150c-18 30-18 70 0 100" fill="none" stroke="#15161a" stroke-width="22" stroke-linecap="round"/>
+<path d="M282 150c18 30 18 70 0 100" fill="none" stroke="#15161a" stroke-width="22" stroke-linecap="round"/>
+<path d="M118 150c20-70 144-70 164 0" fill="none" stroke="#15161a" stroke-width="16" stroke-linecap="round"/>
+<circle cx="170" cy="178" r="6" fill="#2b2140"/>
+<circle cx="230" cy="178" r="6" fill="#2b2140"/>
+<path d="M176 214q24 16 48 0" fill="none" stroke="#2b2140" stroke-width="6" stroke-linecap="round"/>
+</g>
+</svg>

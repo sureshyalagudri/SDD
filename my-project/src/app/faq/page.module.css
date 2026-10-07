@@ -1,0 +1,9 @@
+.page {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3rem);
+}
+
+.header {
+  display: grid;
+  gap: 0.75rem;
+}

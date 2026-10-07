@@ -1,0 +1,35 @@
+.hero {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+  padding: clamp(1.5rem, 4vw, 3.5rem);
+  border-radius: calc(var(--radius) * 1.5);
+  background: linear-gradient(135deg, var(--hero-a), var(--hero-b));
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+}
+
+.copy {
+  display: grid;
+  gap: 1.25rem;
+  align-content: center;
+}
+
+.art img {
+  width: 100%;
+  max-width: 28rem;
+  margin-inline: auto;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+@media (min-width: 960px) {
+  .hero {
+    grid-template-columns: 1.15fr 1fr;
+    align-items: center;
+  }
+
+  .art img {
+    max-width: none;
+  }
+}

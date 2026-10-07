@@ -1,0 +1,58 @@
+.player {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+}
+
+.native {
+  width: 100%;
+}
+
+.player[data-enhanced] .native {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}
+
+.controls {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.play {
+  inline-size: 3rem;
+  block-size: 3rem;
+  display: inline-grid;
+  place-items: center;
+  border-radius: 999px;
+  border: 0;
+  background: var(--accent);
+  color: var(--on-accent);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background 160ms ease;
+}
+
+.play:hover {
+  background: var(--accent-strong);
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+  color: var(--muted);
+  font-size: 0.9375rem;
+  min-width: 3.2ch;
+}
+
+.seek {
+  width: 100%;
+  accent-color: var(--accent);
+  cursor: pointer;
+}

@@ -1,0 +1,53 @@
+.footer {
+  border-top: 1px solid var(--border);
+  background: var(--surface);
+  padding-block: clamp(2rem, 4vw, 3rem);
+  color: var(--muted);
+  font-size: 0.9375rem;
+}
+
+.inner {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.brand {
+  display: grid;
+  gap: 0.25rem;
+  color: var(--text);
+}
+
+.tagline {
+  color: var(--muted);
+  max-width: 48ch;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem 1.25rem;
+}
+
+.link {
+  color: var(--muted);
+}
+
+.link:hover,
+.link[aria-current="page"] {
+  color: var(--text);
+}
+
+.copy {
+  font-size: 0.875rem;
+}
+
+@media (min-width: 768px) {
+  .inner {
+    grid-template-columns: 1fr auto;
+    align-items: start;
+  }
+
+  .copy {
+    grid-column: 1 / -1;
+  }
+}

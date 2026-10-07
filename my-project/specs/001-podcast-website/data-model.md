@@ -26,7 +26,7 @@ Singleton describing the presenter.
 | Field | Type | Rules |
 |-------|------|-------|
 | `name` | string | required |
-| `photoSrc` | string | required; path under `/public`, file must exist |
+| `photoSrc` | string | required; path under `/public`, file must exist (implemented as `/host.svg`, an illustrated avatar) |
 | `photoAlt` | string | required, non-empty |
 | `bio` | string | required, ≤ 600 chars |
 

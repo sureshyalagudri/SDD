@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 600" width="600" height="600" role="img" aria-labelledby="t">
+<title id="t">Signal &amp; Noise, episode 16</title>
+<defs>
+<linearGradient id="g" gradientTransform="rotate(8 .5 .5)"><stop offset="0" stop-color="hsl(40.128000000000156 72% 46%)"/><stop offset="1" stop-color="hsl(88.12800000000016 78% 28%)"/></linearGradient>
+<radialGradient id="r" cx=".8" cy=".2" r=".9"><stop offset="0" stop-color="#fff" stop-opacity=".35"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+</defs>
+<rect width="600" height="600" fill="url(#g)"/>
+<rect width="600" height="600" fill="url(#r)"/>
+<g transform="rotate(2 300 300)" fill="none" stroke="#fff" stroke-opacity=".18" stroke-width="22" stroke-linecap="round">
+<circle cx="300" cy="300" r="150"/>
+<path d="M120 300h360"/>
+</g>
+<text x="56" y="112" font-family="Inter,system-ui,sans-serif" font-size="40" font-weight="600" fill="#fff" fill-opacity=".85" letter-spacing="4">S&amp;N</text>
+<text x="544" y="540" text-anchor="end" font-family="Inter,system-ui,sans-serif" font-size="220" font-weight="800" fill="#fff" fill-opacity=".92">16</text>
+</svg>

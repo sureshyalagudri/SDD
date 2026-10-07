@@ -1,0 +1,49 @@
+.page {
+  display: grid;
+  gap: clamp(2rem, 5vw, 3.5rem);
+  max-width: 64rem;
+}
+
+.header {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.section {
+  display: grid;
+  gap: 1rem;
+  font-size: 1.0625rem;
+  max-width: 68ch;
+}
+
+.host {
+  max-width: none;
+  padding: clamp(1.25rem, 3vw, 2rem);
+  border-radius: var(--radius);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.photo {
+  width: min(100%, 16rem);
+  border-radius: 999px;
+  box-shadow: var(--shadow);
+}
+
+.hostBody {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.mission {
+  padding-left: 1.25rem;
+  border-left: 4px solid var(--accent);
+}
+
+@media (min-width: 720px) {
+  .host {
+    grid-template-columns: 16rem 1fr;
+    align-items: center;
+    gap: 2rem;
+  }
+}

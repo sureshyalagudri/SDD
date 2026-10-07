@@ -1,0 +1,70 @@
+.item {
+  display: flex;
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--bg-elev);
+  overflow: hidden;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease,
+    border-color 180ms ease;
+}
+
+.card:hover,
+.card:focus-within {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+  border-color: var(--accent);
+}
+
+.artLink {
+  display: block;
+}
+
+.art {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.body {
+  display: grid;
+  gap: 0.6rem;
+  padding: 1.1rem 1.2rem 1.3rem;
+  align-content: start;
+}
+
+.title {
+  overflow-wrap: anywhere;
+}
+
+.titleLink {
+  color: var(--text);
+  text-decoration: none;
+}
+
+/* Stretch the title link over the whole card without nesting interactive elements. */
+.titleLink::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+}
+
+.titleLink:hover {
+  color: var(--accent);
+}
+
+.desc {
+  color: var(--muted);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}

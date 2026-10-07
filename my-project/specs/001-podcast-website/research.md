@@ -73,10 +73,11 @@ embedded mock data, responsive) plus the constitution. No `NEEDS CLARIFICATION` 
 
 ## R7. Artwork and imagery
 
-- **Decision**: 20 episode artworks as hand-authored SVGs (gradient + episode number +
-  monogram) in `public/artwork/`; host photo as a single optimized JPEG ≤ 60 KB; platform
-  badges as SVG. Rendered with plain `<img>` and explicit `width`/`height`;
-  `loading="lazy"` for below-the-fold cards.
+- **Decision**: 20 episode artworks as generated SVGs (gradient + episode number +
+  monogram) in `public/artwork/` via `scripts/generate-artwork.mjs` (output committed); host
+  portrait as a single illustrated SVG avatar `public/host.svg` (~1 KB); platform badges as SVG.
+  Rendered with plain `<img>` and explicit `width`/`height`; `loading="lazy"` for below-the-fold
+  cards.
 - **Rationale**: SVG is tiny, crisp at any DPR, and trivially distinct per episode; explicit
   dimensions prevent layout shift (Performance ≥ 90); no image optimizer needed.
 - **Alternatives considered**: Raster placeholders (larger, need multiple sizes);
@@ -104,8 +105,10 @@ embedded mock data, responsive) plus the constitution. No `NEEDS CLARIFICATION` 
   - Lighthouse CI (`@lhci/cli`) with assertions `categories:performance ≥ 0.9`,
     `categories:accessibility ≥ 0.9`, and a `resource-summary:script:size ≤ 200000` budget on
     representative pages (landing, episodes, one episode, about, faq).
-  - `html-validate` over `out/**/*.html`; `linkinator` over `out/` (recursive, checks external
-    platform links too).
+  - `html-validate` over `out/**/*.html` (style-only rules for React's void-tag/camelCase
+    serialization disabled; structural rules on); link check via `scripts/check-links.mjs`,
+    which serves `out/` locally and crawls it with the linkinator API (the linkinator CLI's
+    directory glob fails on Windows), including external platform links.
 - **Rationale**: Directly maps to constitution Development Workflow gates and spec SC-003/004/
   005/007.
 - **Alternatives considered**: Cypress (heavier; Playwright has first-class no-JS mode); manual

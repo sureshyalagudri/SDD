@@ -1,0 +1,10 @@
+.page {
+  display: grid;
+  gap: clamp(2.5rem, 6vw, 5rem);
+}
+
+.intro {
+  display: grid;
+  gap: 1rem;
+  max-width: 64ch;
+}

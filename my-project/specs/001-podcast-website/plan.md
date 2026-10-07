@@ -82,52 +82,54 @@ specs/001-podcast-website/
 ### Source Code (repository root)
 
 ```text
-app/
-├── layout.tsx                 # Root layout: html[data-theme], header/nav, footer, fonts
-├── page.tsx                   # Landing (featured episode hero + Listen On)
-├── not-found.tsx              # Branded 404 → exported as out/404.html
-├── globals.css                # Tokens (light/dark), reset, typography, focus styles
-├── episodes/
-│   ├── page.tsx               # Episodes catalog (20, newest first)
-│   └── [slug]/page.tsx        # Episode detail (generateStaticParams over content)
-├── about/page.tsx
-└── faq/page.tsx
+src/
+├── app/
+│   ├── layout.tsx             # Root layout: html[data-theme], header/nav, footer, fonts
+│   ├── page.tsx               # Landing (featured episode hero + Listen On)
+│   ├── not-found.tsx          # Branded 404 → exported as out/404.html
+│   ├── globals.css            # Tokens (light/dark), reset, typography, focus styles
+│   ├── episodes/
+│   │   ├── page.tsx           # Episodes catalog (20, newest first)
+│   │   └── [slug]/page.tsx    # Episode detail (generateStaticParams over content)
+│   ├── about/page.tsx
+│   └── faq/page.tsx
+├── components/
+│   ├── SiteHeader.tsx         # nav + ThemeToggle slot
+│   ├── SiteFooter.tsx
+│   ├── NavLinks.tsx           # client; aria-current via usePathname
+│   ├── ThemeToggle.tsx        # client component; hidden when JS unavailable
+│   ├── EpisodeHero.tsx
+│   ├── EpisodeCard.tsx
+│   ├── AudioPlayer.tsx        # client component wrapping native <audio>
+│   ├── ListenOn.tsx           # platform badges
+│   └── FaqList.tsx            # <details>/<summary> items
+├── content/
+│   ├── podcast.ts             # name, tagline, intro, mission
+│   ├── host.ts
+│   ├── episodes.ts            # 20 episodes, exactly one featured
+│   ├── faq.ts
+│   └── platforms.ts           # Listen-on platforms (name, badge, home URL)
+├── lib/
+│   ├── types.ts               # Content types (see contracts/content-schema.md)
+│   ├── episodes.ts            # getAllEpisodes (sorted), getEpisodeBySlug, getFeaturedEpisode
+│   ├── fonts.ts               # next/font/local (committed WOFF2)
+│   └── theme.ts               # theme init script string + storage key
+├── tests/
+│   ├── unit/                  # content invariants, lib helpers, component rendering
+│   └── e2e/                   # Playwright: journeys, keyboard, no-JS, viewports, axe
+└── test-results/              # generated (git-ignored): Playwright + Lighthouse output
 
-components/
-├── SiteHeader.tsx             # nav + ThemeToggle slot
-├── SiteFooter.tsx
-├── ThemeToggle.tsx            # client component; hidden when JS unavailable
-├── EpisodeHero.tsx
-├── EpisodeCard.tsx
-├── AudioPlayer.tsx            # client component wrapping native <audio>
-├── ListenOn.tsx               # platform badges
-└── FaqList.tsx                # <details>/<summary> items
-
-content/
-├── podcast.ts                 # name, tagline, intro, mission
-├── host.ts
-├── episodes.ts                # 20 episodes, exactly one featured
-├── faq.ts
-└── platforms.ts               # Listen-on platforms (name, badge, home URL)
-
-lib/
-├── types.ts                   # Content types (see contracts/content-schema.md)
-├── episodes.ts                # getAllEpisodes (sorted), getEpisodeBySlug, getFeaturedEpisode
-└── theme.ts                   # theme init script string + storage key
-
-public/
+public/                        # must stay at root: Next.js serves static assets from here
 ├── artwork/ep-01.svg … ep-20.svg
 ├── audio/ep-01.mp3 … ep-20.mp3   # short generated placeholder clips
 ├── badges/*.svg
 ├── fonts/*.woff2
-└── host.jpg
+└── host.svg
 
-scripts/
-└── generate-placeholder-audio.mjs  # one-off generator; output is committed
-
-tests/
-├── unit/                      # content invariants, lib helpers, component rendering
-└── e2e/                       # Playwright: journeys, keyboard, no-JS, viewports, axe
+scripts/                       # dev tooling, not app code
+├── generate-artwork.mjs
+├── generate-placeholder-audio.mjs
+└── check-links.mjs
 
 next.config.ts                 # output:'export', trailingSlash:true, images.unoptimized:true
 lighthouserc.json              # ≥90 perf/a11y, script budget 200 KB
@@ -136,10 +138,11 @@ vitest.config.ts
 package.json
 ```
 
-**Structure Decision**: Single Next.js project at repository root (no `frontend/`/`backend/`
-split — there is no backend). Pages live in `app/`, presentational components in `components/`,
-embedded mock data in `content/`, pure helpers in `lib/`, static assets in `public/`. The static
-build output `out/` is the sole deployable artifact.
+**Structure Decision**: Single Next.js project with application code under `src/` (`app/`,
+`components/`, `content/`, `lib/`, `tests/`); the `@/*` alias maps to `src/*`. `public/` stays at
+the repository root because Next.js only serves static assets from there, and `scripts/` stays at
+the root as build-time tooling. Generated test output goes to `src/test-results/` (ignored). The
+static build output `out/` is the sole deployable artifact.
 
 ## Complexity Tracking
 

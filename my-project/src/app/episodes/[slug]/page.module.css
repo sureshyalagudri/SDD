@@ -1,0 +1,49 @@
+.article {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.back {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.layout {
+  display: grid;
+  gap: clamp(1.5rem, 4vw, 3rem);
+}
+
+.art img {
+  width: 100%;
+  max-width: 26rem;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+}
+
+.body {
+  display: grid;
+  gap: 1.25rem;
+  align-content: start;
+}
+
+.description {
+  display: grid;
+  gap: 1rem;
+  max-width: 68ch;
+  font-size: 1.0625rem;
+}
+
+@media (min-width: 900px) {
+  .layout {
+    grid-template-columns: minmax(16rem, 26rem) 1fr;
+    align-items: start;
+  }
+
+  .art {
+    position: sticky;
+    top: 5.5rem;
+  }
+}

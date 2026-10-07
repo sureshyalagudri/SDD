@@ -17,7 +17,7 @@ export interface Podcast {
 
 export interface Host {
   name: string;
-  photoSrc: string;   // "/host.jpg"
+  photoSrc: string;   // "/host.svg"
   photoAlt: string;
   bio: string;
 }
