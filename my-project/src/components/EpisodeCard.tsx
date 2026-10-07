@@ -19,7 +19,7 @@ export function EpisodeCard({ episode }: { episode: Episode }) {
           className={styles.art}
         />
         <div className={styles.body}>
-          <p className="eyebrow">Ep. {episode.number}</p>
+          <p className={`eyebrow ${styles.number}`}>Ep. {episode.number}</p>
           <h3 id={titleId} className={styles.title}>
             <Link href={episodeHref(episode)} prefetch={false} className={styles.titleLink}>
               {episode.title}

@@ -3,7 +3,8 @@
 A fully static, responsive podcast site built with Next.js (App Router, `output: 'export'`).
 Landing page with a featured-episode hero, a catalog of 20 episodes with dedicated detail pages
 and a working audio player, About and FAQ pages, light/dark theme, and no backend — all content
-is embedded sample data in `content/`.
+is embedded sample data in `content/`. The Episodes catalog offers a Card (grid) / List view
+switcher whose choice is remembered in the browser.
 
 Specification, plan, and tasks live in [specs/001-podcast-website/](specs/001-podcast-website/).
 Project principles are in [.specify/memory/constitution.md](.specify/memory/constitution.md).
@@ -54,10 +55,10 @@ by hosts that support it.
 
 ```text
 src/app/           routes (layout, landing, episodes, episodes/[slug], about, faq, not-found)
-src/components/    SiteHeader, SiteFooter, NavLinks, ThemeToggle, EpisodeHero, EpisodeCard,
-                   AudioPlayer, ListenOn, FaqList
+src/components/    SiteHeader, SiteFooter, NavLinks, ThemeToggle, ViewSwitcher, EpisodeHero,
+                   EpisodeCard, AudioPlayer, ListenOn, FaqList
 src/content/       embedded sample data (podcast, host, episodes, faq, platforms)
-src/lib/           types, episode helpers, theme init script, local font
+src/lib/           types, episode helpers, theme + view bootstrap scripts, local font
 src/tests/         unit/ (Vitest) and e2e/ (Playwright)
 src/test-results/  generated: Playwright traces + HTML report, Lighthouse reports (git-ignored)
 public/            static assets served at / (artwork/, audio/, badges/, fonts/, host.svg)

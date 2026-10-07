@@ -3,6 +3,14 @@
   gap: clamp(2rem, 4vw, 3rem);
 }
 
+.toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
 .header {
   display: grid;
   gap: 0.75rem;
@@ -24,4 +32,11 @@
   .grid {
     grid-template-columns: repeat(3, 1fr);
   }
+}
+
+/* List view: same items, single column with dividers. Declared last so it wins at every width. */
+:global(html[data-view="list"]) .grid {
+  grid-template-columns: 1fr;
+  gap: 0;
+  border-top: 1px solid var(--border);
 }

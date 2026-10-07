@@ -249,6 +249,10 @@ html.no-js .theme-toggle {
   display: none;
 }
 
+html.no-js .view-switcher {
+  display: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

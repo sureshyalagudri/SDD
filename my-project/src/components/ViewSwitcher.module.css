@@ -1,0 +1,38 @@
+.group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.2rem;
+  padding: 0.2rem;
+  border: 1px solid var(--border);
+  border-radius: 999px;
+  background: var(--bg-elev);
+}
+
+.option {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9375rem;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    background 160ms ease,
+    color 160ms ease;
+}
+
+.option:hover {
+  color: var(--text);
+}
+
+/* Pressed look is driven by html[data-view] so it is correct before hydration; aria-pressed carries semantics. */
+:global(html:not([data-view="list"])) .option[data-value="card"],
+:global(html[data-view="list"]) .option[data-value="list"] {
+  background: var(--accent);
+  color: var(--on-accent);
+}

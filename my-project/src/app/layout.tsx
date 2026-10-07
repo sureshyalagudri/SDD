@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { podcast } from "@/content/podcast";
 import { sans } from "@/lib/fonts";
 import { themeInitScript } from "@/lib/theme";
+import { viewInitScript } from "@/lib/view";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`no-js ${sans.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript }} />
+        <script dangerouslySetInnerHTML={{ __html: themeInitScript + viewInitScript }} />
       </head>
       <body>
         <a href="#main" className="skip-link">

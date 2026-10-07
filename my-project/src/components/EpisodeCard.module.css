@@ -69,3 +69,105 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
+/* ---------- List view (html[data-view="list"]): same markup laid out as a row ---------- */
+
+:global(html[data-view="list"]) .card {
+  display: grid;
+  grid-template-columns: 64px auto minmax(0, 1fr) auto;
+  grid-template-rows: auto;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 0.5rem;
+  border: 0;
+  border-radius: 0;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  box-shadow: none;
+  transform: none;
+  overflow: visible;
+}
+
+:global(html[data-view="list"]) .card:hover,
+:global(html[data-view="list"]) .card:focus-within {
+  transform: none;
+  box-shadow: none;
+  background: var(--surface);
+  border-color: var(--border);
+}
+
+:global(html[data-view="list"]) .art {
+  width: 64px;
+  height: 64px;
+  border-radius: var(--radius-sm);
+}
+
+/* Flatten the body so its children join the row grid. */
+:global(html[data-view="list"]) .body {
+  display: contents;
+}
+
+:global(html[data-view="list"]) .number {
+  grid-column: 2;
+  white-space: nowrap;
+  min-width: 3.5rem;
+}
+
+:global(html[data-view="list"]) .title {
+  grid-column: 3;
+  min-width: 0;
+  font-size: 1.0625rem;
+}
+
+:global(html[data-view="list"]) .desc {
+  display: none;
+}
+
+:global(html[data-view="list"]) .card :global(.meta) {
+  grid-column: 4;
+  justify-content: end;
+  white-space: nowrap;
+  gap: 0.5rem 1rem;
+}
+
+@media (max-width: 479px) {
+  :global(html[data-view="list"]) .card {
+    grid-template-columns: 56px minmax(0, 1fr);
+    row-gap: 0.25rem;
+    column-gap: 0.75rem;
+  }
+
+  :global(html[data-view="list"]) .art {
+    width: 56px;
+    height: 56px;
+    grid-row: 1 / span 3;
+  }
+
+  :global(html[data-view="list"]) .number,
+  :global(html[data-view="list"]) .title,
+  :global(html[data-view="list"]) .card :global(.meta) {
+    grid-column: 2;
+    justify-content: start;
+    white-space: normal;
+  }
+}
+
+@media (min-width: 960px) {
+  :global(html[data-view="list"]) .card {
+    grid-template-columns: 64px 5rem minmax(0, 1fr) minmax(0, 28rem) auto;
+  }
+
+  :global(html[data-view="list"]) .desc {
+    grid-column: 4;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    color: var(--muted);
+    font-size: 0.9375rem;
+  }
+
+  :global(html[data-view="list"]) .card :global(.meta) {
+    grid-column: 5;
+  }
+}

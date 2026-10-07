@@ -20,4 +20,19 @@ test.describe("Accessibility (axe, WCAG 2.1 A/AA)", () => {
       });
     }
   }
+
+  for (const theme of ["light", "dark"] as const) {
+    test(`/episodes/ in List view and ${theme} theme has no violations`, async ({ page }) => {
+      await page.addInitScript((t) => {
+        localStorage.setItem("theme", t);
+        localStorage.setItem("episodeView", "list");
+      }, theme);
+      await page.goto("/episodes/");
+      await expect(page.locator("html")).toHaveAttribute("data-view", "list");
+      const results = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+        .analyze();
+      expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
+    });
+  }
 });
