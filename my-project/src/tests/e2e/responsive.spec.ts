@@ -23,10 +23,15 @@ test.describe("Responsive layout", () => {
 
   for (const width of WIDTHS) {
     test(`/episodes/ in List view has no horizontal overflow at ${width}px`, async ({ page }) => {
-      await page.addInitScript(() => localStorage.setItem("episodeView", "list"));
+      await page.addInitScript(() => {
+        localStorage.setItem("episodeView", "list");
+        localStorage.setItem("episodeSort", "title-asc");
+      });
       await page.setViewportSize({ width, height: 900 });
       await page.goto("/episodes/");
       await expect(page.locator("html")).toHaveAttribute("data-view", "list");
+      await expect(page.getByRole("group", { name: "Catalog view" })).toBeVisible();
+      await expect(page.getByLabel("Sort by")).toBeVisible();
       const overflow = await page.evaluate(
         () => document.documentElement.scrollWidth - document.documentElement.clientWidth,
       );

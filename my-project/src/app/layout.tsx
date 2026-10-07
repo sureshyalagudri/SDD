@@ -6,6 +6,7 @@ import { podcast } from "@/content/podcast";
 import { sans } from "@/lib/fonts";
 import { themeInitScript } from "@/lib/theme";
 import { viewInitScript } from "@/lib/view";
+import { sortInitScript } from "@/lib/sort";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +18,9 @@ export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className={`no-js ${sans.variable}`} suppressHydrationWarning>
       <head>
-        <script dangerouslySetInnerHTML={{ __html: themeInitScript + viewInitScript }} />
+        <script
+          dangerouslySetInnerHTML={{ __html: themeInitScript + viewInitScript + sortInitScript }}
+        />
       </head>
       <body>
         <a href="#main" className="skip-link">

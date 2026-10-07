@@ -11,6 +11,20 @@
   gap: 1rem;
 }
 
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+@media (max-width: 479px) {
+  .controls {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 .header {
   display: grid;
   gap: 0.75rem;
@@ -39,4 +53,25 @@
   grid-template-columns: 1fr;
   gap: 0;
   border-top: 1px solid var(--border);
+}
+
+/* Sort: pre-hydration bridge. Each <li> carries its rank per order as a CSS variable. */
+:global(html[data-sort="oldest"]) .grid > li {
+  order: var(--s-oldest);
+}
+
+:global(html[data-sort="title-asc"]) .grid > li {
+  order: var(--s-title-asc);
+}
+
+:global(html[data-sort="title-desc"]) .grid > li {
+  order: var(--s-title-desc);
+}
+
+:global(html[data-sort="shortest"]) .grid > li {
+  order: var(--s-shortest);
+}
+
+:global(html[data-sort="longest"]) .grid > li {
+  order: var(--s-longest);
 }

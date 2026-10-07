@@ -34,5 +34,20 @@ test.describe("Accessibility (axe, WCAG 2.1 A/AA)", () => {
         .analyze();
       expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
     });
+
+    test(`/episodes/ sorted by title in ${theme} theme has no violations`, async ({ page }) => {
+      await page.addInitScript((t) => {
+        localStorage.setItem("theme", t);
+        localStorage.setItem("episodeSort", "title-asc");
+        if (t === "dark") localStorage.setItem("episodeView", "list");
+      }, theme);
+      await page.goto("/episodes/");
+      await expect(page.locator("html")).toHaveAttribute("data-sort", "title-asc");
+      await expect(page.getByLabel("Sort by")).toBeVisible();
+      const results = await new AxeBuilder({ page })
+        .withTags(["wcag2a", "wcag2aa", "wcag21a", "wcag21aa"])
+        .analyze();
+      expect(results.violations, JSON.stringify(results.violations, null, 2)).toEqual([]);
+    });
   }
 });

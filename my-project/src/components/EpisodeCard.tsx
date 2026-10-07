@@ -1,12 +1,18 @@
 import Link from "next/link";
+import type { CSSProperties } from "react";
 import type { Episode } from "@/lib/types";
 import { episodeHref, formatDate, formatDuration } from "@/lib/episodes";
 import styles from "./EpisodeCard.module.css";
 
-export function EpisodeCard({ episode }: { episode: Episode }) {
+export type CardEpisode = Pick<
+  Episode,
+  "number" | "slug" | "title" | "shortDescription" | "artworkSrc" | "artworkAlt" | "durationSeconds" | "publishedAt"
+>;
+
+export function EpisodeCard({ episode, style }: { episode: CardEpisode; style?: CSSProperties }) {
   const titleId = `ep-${episode.number}-title`;
   return (
-    <li className={styles.item}>
+    <li className={styles.item} style={style}>
       <article className={styles.card} aria-labelledby={titleId}>
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
